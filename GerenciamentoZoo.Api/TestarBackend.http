@@ -1,0 +1,70 @@
+@baseUrl = http://localhost:5226
+
+### cadastro de um novo animal
+POST {{baseUrl}}/api/Animais HTTP/1.1
+Content-Type: application/json
+
+[ 
+  {
+    "nome": "Max",
+    "descricao": "Cachorro da raça Labrador, animal de resgate e mascote do zoológico.",
+    "especie": "Canis familiaris",
+    "habitat": "Área Administrativa (Recinto D1)",
+    "paisDeOrigem": "Brasil",
+    "dataNascimento": "2023-01-10T00:00:00"
+  }
+]
+
+### listar todos os animais cadastrados
+
+GET {{baseUrl}}/api/Animais HTTP/1.1
+
+### atualizar dados do animal cadastrado
+
+@animalId = 1
+
+PUT {{baseUrl}}/api/Animais/{{animalId}} HTTP/1.1
+Content-Type: application/json
+PUT {{baseUrl}}/api/Animais/{{animalId}} HTTP/1.1
+Content-Type: application/json
+{
+  "id": {{animalId}},
+  "nome": "Max",
+  "descricao": "Cachorro da raça Labrador, animal de resgate e mascote do zoológico.",
+  "especie": "Canis familiaris",
+  "habitat": "Área de Treinamento e Convívio",
+  "paisDeOrigem": "Brasil",
+  "dataNascimento": "2023-01-10T00:00:00",
+}
+
+### obter detalhes do animal atualizado
+
+GET {{baseUrl}}/api/Animais/{{animalId}} HTTP/1.1
+
+### cadastrar um novo cuidado para o animal
+
+@cuidadoAnimalId = 1
+
+POST {{baseUrl}}/api/Cuidados HTTP/1.1
+Content-Type: application/json
+
+{
+  "nome": "Vacinação Anual",
+  "descricao": "Vacina contra Raiva e Parvovirose.",
+  "frequencia": "Anual",
+  "animalId": {{cuidadoAnimalId}}
+}
+
+### listar todos os cuidados cadastrados
+
+GET {{baseUrl}}/api/Cuidados HTTP/1.1
+
+### atualizar dados do cuidado cadastrado
+
+@cuidadoId = 4
+
+DELETE {{baseUrl}}/api/Cuidados/{{cuidadoId}} HTTP/1.1
+
+### deletar o animal cadastrado 
+
+DELETE {{baseUrl}}/api/Animais/{{animalId}} HTTP/1.1

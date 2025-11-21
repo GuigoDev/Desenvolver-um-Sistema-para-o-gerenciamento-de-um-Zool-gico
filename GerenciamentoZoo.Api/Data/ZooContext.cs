@@ -8,7 +8,6 @@ namespace GerenciamentoZoo.Api.Data
         public ZooContext(DbContextOptions<ZooContext> options) : base(options)
         {
         }
-
         public DbSet<Animal> Animais { get; set; } 
         public DbSet<Cuidado> Cuidados { get; set; }
     }

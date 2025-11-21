@@ -33,18 +33,31 @@ public class AnimaisController : ControllerBase
         return animal;
     }
 
-    [HttpPost]
-    public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
+   [HttpPost]
+    public async Task<ActionResult<List<Animal>>> PostAnimais(List<Animal> animais)
     {
-        if (string.IsNullOrWhiteSpace(animal.Nome) || string.IsNullOrWhiteSpace(animal.Especie))
+        if (animais == null || animais.Count == 0)
         {
-            return BadRequest("Nome e Espécie são obrigatórios.");
+            return BadRequest("A lista de animais não pode ser vazia.");
+        }
+
+        foreach (var animal in animais)
+        {
+            if (string.IsNullOrWhiteSpace(animal.Nome) || string.IsNullOrWhiteSpace(animal.Especie))
+            {
+                return BadRequest($"Nome e Espécie são obrigatórios para todos os animais na lista.");
+            }
+          
+            if (animal.DataEntradaNoZoo == null)
+            {
+                animal.DataEntradaNoZoo = DateTime.Now;
+            }
         }
         
-        _context.Animais.Add(animal);
+        _context.Animais.AddRange(animais); 
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetAnimal), new { id = animal.Id }, animal);
+        return CreatedAtAction(nameof(GetAnimais), animais);
     }
 
     [HttpPut("{id}")]

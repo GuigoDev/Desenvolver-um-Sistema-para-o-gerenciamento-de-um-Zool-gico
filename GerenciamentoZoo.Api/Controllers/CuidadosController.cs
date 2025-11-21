@@ -43,6 +43,8 @@ public class CuidadosController : ControllerBase
         
         _context.Cuidados.Add(cuidado);
         await _context.SaveChangesAsync();
+        
+        await _context.Entry(cuidado).Reference(c => c.Animal).LoadAsync();
 
         return CreatedAtAction(nameof(GetCuidado), new { id = cuidado.Id }, cuidado);
     }
