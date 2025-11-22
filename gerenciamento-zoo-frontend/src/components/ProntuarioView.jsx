@@ -7,15 +7,11 @@ import { frequencias } from '../data/frequencias';
 function ProntuarioView({ animal, onBack }) {
   const [consultas, setConsultas] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  // Estados do Formulário
-  const [status, setStatus] = useState('Em espera'); // Status padrão
+  const [status, setStatus] = useState('Em espera'); 
   const [tipoCuidado, setTipoCuidado] = useState('');
   const [frequencia, setFrequencia] = useState('');
   const [descricao, setDescricao] = useState('');
   const [idEdicao, setIdEdicao] = useState(null);
-
-  // Filtros Visuais
   const [filtroNome, setFiltroNome] = useState(animal?.nome || '');
   const [filtroPais, setFiltroPais] = useState('');
   const [filtroStatus, setFiltroStatus] = useState('');
@@ -26,11 +22,7 @@ function ProntuarioView({ animal, onBack }) {
     axios.get('/api/Cuidados')
       .then(response => {
         const data = Array.isArray(response.data) ? response.data : [];
-        
-        // Filtra pelo animal atual
         let historico = data.filter(c => c.animalId === animal.id);
-
-        // 🚨 ORDENAÇÃO POR PRIORIDADE (Em andamento > Em espera > Finalizado)
         const prioridade = { 'Em andamento': 1, 'Em espera': 2, 'Finalizado': 3 };
         historico.sort((a, b) => {
             const pA = prioridade[a.status] || 4;
@@ -58,7 +50,7 @@ function ProntuarioView({ animal, onBack }) {
       nome: tipoCuidado,
       frequencia: frequencia,
       descricao: descricao,
-      status: status, // 🚨 Salva o status selecionado
+      status: status, 
       animalId: animal.id
     };
 
@@ -87,7 +79,7 @@ function ProntuarioView({ animal, onBack }) {
     setTipoCuidado(item.nome);
     setFrequencia(item.frequencia);
     setDescricao(item.descricao);
-    setStatus(item.status || 'Em espera'); // Carrega o status existente
+    setStatus(item.status || 'Em espera');
     setIdEdicao(item.id);
   };
 
@@ -98,13 +90,11 @@ function ProntuarioView({ animal, onBack }) {
     setStatus('Em espera');
     setIdEdicao(null);
   };
-
-  // Helper para cor do status
   const getStatusColor = (st) => {
       switch(st) {
-          case 'Em andamento': return '#34D399'; // Verde
-          case 'Finalizado': return '#6B7280';   // Cinza
-          default: return '#F59E0B';             // Amarelo (Em espera)
+          case 'Em andamento': return '#34D399'; 
+          case 'Finalizado': return '#6B7280';  
+          default: return '#F59E0B';             
       }
   };
 
@@ -147,8 +137,6 @@ function ProntuarioView({ animal, onBack }) {
         
         <div className="detail-header">
             <h2 className="animal-name">{animal.nome}</h2>
-            
-            {/* 🚨 Seletor de Status Global para o Novo Registro */}
             <div className="status-container">
                 <span style={{color: 'white', fontSize: '1.5em', marginRight: '10px'}}>Status:</span>
                 <select 
@@ -225,7 +213,6 @@ function ProntuarioView({ animal, onBack }) {
                             <li key={c.id} className="historico-item">
                                 <div style={{flex: 1}}>
                                     <div style={{display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '5px'}}>
-                                        {/* 🚨 ALERTA VISUAL DE STATUS */}
                                         <span className="status-dot" style={{backgroundColor: getStatusColor(c.status || 'Em espera')}} title={c.status}></span>
                                         <strong style={{color: 'var(--color-primary)'}}>{c.nome}</strong>
                                         <span className="freq-tag">{c.frequencia}</span>

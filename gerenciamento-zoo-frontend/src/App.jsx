@@ -13,7 +13,6 @@ function App() {
   const handleNavigation = (view) => {
     setCurrentView(view);
     if (view === 'cadastro') setAnimalParaEditar(null); 
-    // Se sair da tela de prontuário, limpa a seleção
     if (view !== 'prontuario') setAnimalParaConsulta(null);
   };
 
@@ -56,19 +55,16 @@ function App() {
       
       <div className="app-container">
         <main>
-          {/* TELA DE CADASTRO / EDIÇÃO */}
           {currentView === 'cadastro' && (
             <section className="section-cadastro">
               <AnimalForm onAnimalSaved={handleAnimalSaved} animalEditando={animalParaEditar} /> 
             </section>
           )}
 
-          {/* TELA DE LISTAGEM */}
           {currentView === 'lista' && (
             <AnimalList onEdit={handleEditAnimal} onOpenProntuario={handleOpenProntuario} /> 
           )}
 
-          {/* TELA DE PRONTUÁRIOS (ESPECÍFICA DO ANIMAL) */}
           {currentView === 'prontuario' && (
             animalParaConsulta ? (
               <ProntuarioView 
@@ -76,7 +72,6 @@ function App() {
                   onBack={() => handleNavigation('lista')} 
               />
             ) : (
-              // Tela de Aviso se clicar no menu sem selecionar animal
               <div className="form-container" style={{ textAlign: 'center', maxWidth: '600px' }}>
                   <h2 style={{ color: 'white', borderBottom: 'none' }}>Acesso aos Prontuários</h2>
                   <p style={{ color: 'white', marginBottom: '20px' }}>
