@@ -1,0 +1,8 @@
+@import url('./styles/_variables.css');
+@import url('./styles/_base.css');
+@import url('./styles/_layout.css');
+@import url('./styles/_ui.css');
+@import url('./styles/_screen-cadastro.css');
+@import url('./styles/_screen-lista.css');
+@import url('./styles/_screen-prontuario.css');
+@import url('./styles/_screen-cuidadores.css');

@@ -1,0 +1,123 @@
+/* Local: src/styles/_screen-cuidadores.css */
+
+/* --- TELA: CUIDADORES --- */
+
+/* Card de Filtro */
+.cuidadores-filter-card {
+    margin-bottom: 30px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    background-color: var(--color-secondary) !important;
+    /* Garante espaço para o botão de cima não sobrepor */
+    margin-top: 60px; 
+}
+
+.cuidadores-filter-card h2 {
+    text-align: center;
+    padding-bottom: 15px;
+    margin: 0 0 20px 0;
+    position: relative;
+    color: white !important;
+    font-weight: 400;
+    font-size: 1.8em;
+    text-transform: none;
+    border-bottom: none;
+}
+
+.cuidadores-filter-card h2::after {
+    content: ''; display: block; width: 60%; height: 1px; background-color: white; margin: 10px auto 0 auto;
+}
+
+/* Grupo de Busca (Input + Botão Lado a Lado) */
+.search-group {
+    display: flex;
+    gap: 10px;
+    max-width: 600px;
+    margin: 20px auto 0 auto; /* Centraliza */
+    align-items: flex-end;
+}
+
+.search-group .input-wrapper {
+    flex-grow: 1;
+}
+
+.cuidadores-filter-card label {
+    color: white !important;
+    font-size: 1em;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.cuidadores-filter-card input {
+    background-color: #e0f2e9 !important;
+    color: #333 !important;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Botão de Buscar */
+.search-btn {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    height: fit-content;
+}
+.search-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+
+/* --- BARRA DE AÇÃO (Botão Novo) --- */
+/* Posiciona o botão FORA e ACIMA do card, alinhado à direita */
+.cuidadores-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -40px; /* Puxa para perto do card, mas sem sobrepor conteúdo interno */
+    position: relative;
+    z-index: 10;
+    padding-right: 10px;
+    transform: translateY(-20px); /* Ajuste fino de altura */
+}
+
+.btn-novo-cuidador {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.2s, filter 0.2s;
+}
+.btn-novo-cuidador:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+/* --- LISTA VAZIA / GRID --- */
+.empty-cuidadores-bar {
+    background-color: rgba(39, 103, 73, 0.95);
+    color: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 40px; /* Mais espaço do card de cima */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    backdrop-filter: blur(5px);
+}
+
+.cuidadores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
