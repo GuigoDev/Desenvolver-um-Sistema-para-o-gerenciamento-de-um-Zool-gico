@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GerenciamentoZoo.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCleanMigration : Migration
+    public partial class FinalSchemaMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,6 +51,8 @@ namespace GerenciamentoZoo.Api.Migrations
                     Descricao = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Frequencia = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Status = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     AnimalId = table.Column<int>(type: "int", nullable: false)
                 },

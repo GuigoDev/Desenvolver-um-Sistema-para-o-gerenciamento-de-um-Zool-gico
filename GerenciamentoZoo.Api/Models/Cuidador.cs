@@ -8,6 +8,7 @@ namespace GerenciamentoZoo.Api.Models
         public string? Nome { get; set; }
         public string? Descricao { get; set; }
         public string? Frequencia { get; set; }
+        public string? Status { get; set; } 
         public int AnimalId { get; set; }
         public Animal? Animal { get; set; }
     }

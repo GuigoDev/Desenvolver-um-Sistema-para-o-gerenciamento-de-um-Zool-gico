@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GerenciamentoZoo.Api.Migrations
 {
     [DbContext(typeof(ZooContext))]
-    [Migration("20251121231338_InitialCleanMigration")]
-    partial class InitialCleanMigration
+    [Migration("20251122203724_FinalSchemaMigration")]
+    partial class FinalSchemaMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,6 +77,9 @@ namespace GerenciamentoZoo.Api.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Nome")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Status")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");

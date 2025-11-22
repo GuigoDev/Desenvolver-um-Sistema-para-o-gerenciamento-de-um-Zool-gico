@@ -1,70 +1,63 @@
-.filter-card h2 {
-    text-align: center;
-    color: white !important;
-    margin-bottom: 20px;
-    position: relative;
-    font-weight: 400;
-    font-size: 1.8em;
+/* --- TELA: LISTA (Grid de Animais) --- */
+
+/* Painel de Filtros */
+.filter-card { 
+    margin-bottom: 40px; 
 }
 
-.filter-card h2::after {
-    content: '';
-    display: block;
-    width: 60%;
-    height: 1px;
-    background-color: white;
-    margin: 10px auto 0 auto;
+.filter-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 20px; 
+    align-items: end; 
 }
 
-.filter-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
-    align-items: end;
-    margin-top: 20px;
-}
-
+/* Barra de "Nenhum animal cadastrado" */
 .empty-state-bar {
     background-color: rgba(39, 103, 73, 0.95);
-    color: white;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
+    color: white; 
+    padding: 30px; 
+    border-radius: 12px; 
+    text-align: center; 
     font-size: 1.5em;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px); 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.animal-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
+/* Grid Principal */
+.animal-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+    gap: 25px; 
+    margin-top: 20px; 
 }
 
-.animal-card {
-    padding: 20px;
-    border-radius: 12px;
-    display: flex;
+/* Estilo do Card */
+.animal-card { 
+    padding: 20px; 
+    border-radius: 12px; 
+    display: flex; 
     flex-direction: column;
     gap: 10px;
 }
 
-.light-mode .animal-card {
-    background-color: white;
-    color: #333;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* Cores do Card (Baseado no Tema) */
+.light-mode .animal-card { 
+    background-color: white; 
+    color: #333; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
 }
 
-.dark-mode .animal-card {
-    background-color: #1E1E1E;
-    color: #E0E0E0;
-    border: 1px solid #333;
+.dark-mode .animal-card { 
+    background-color: #1E1E1E; 
+    color: #E0E0E0; 
+    border: 1px solid #333; 
 }
 
+/* --- CABEÇALHO DO CARD --- */
 .card-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
     width: 100%;
     border-bottom: 1px solid var(--color-primary);
@@ -73,77 +66,79 @@
     gap: 15px;
 }
 
-.card-header h3 {
-    margin: 0;
-    font-size: 1.6em;
+.card-header h3 { 
+    margin: 0; 
+    font-size: 1.6em; 
     color: var(--color-primary);
-    flex-grow: 1;
+    flex-grow: 1; 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+/* 🚨 FIXO: Botão Consulta (Estilo Atualizado) */
 button.consulta-button {
-    background-color: var(--color-secondary);
+    background-color: var(--color-secondary); /* Verde Escuro */
     color: white;
-    font-size: 0.85em;
-    padding: 6px 12px;
+    font-size: 0.9em;
+    font-weight: 500;
+    padding: 8px 16px;
     border-radius: 6px;
     border: none;
-    flex-shrink: 0;
-    width: auto;
+    
+    /* Impede deformação */
+    flex-shrink: 0; 
+    width: auto; 
     height: fit-content;
-    margin: 0;
-    box-shadow: none;
+    margin: 0; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.2s, transform 0.2s;
 }
 
-button.consulta-button:hover {
-    background-color: #256647;
-    transform: none;
+button.consulta-button:hover { 
+    filter: brightness(1.1); 
+    transform: translateY(-1px);
 }
 
-.card-body p {
-    margin: 5px 0;
-    font-size: 0.95em;
-    line-height: 1.4;
+/* Corpo do Texto */
+.card-body p { 
+    margin: 5px 0; 
+    font-size: 0.95em; 
+    line-height: 1.4; 
 }
 
-.card-body strong {
-    color: white;
-}
+.card-body strong { color: white; } 
+.light-mode .card-body strong { color: #333; }
 
-.light-mode .card-body strong {
-    color: #333;
-}
-
-.card-actions {
-    display: flex;
-    gap: 15px;
+/* --- RODAPÉ (Botões de Ação) --- */
+.card-actions { 
+    display: flex; 
+    gap: 15px; 
     margin-top: 15px;
     width: 100%;
 }
 
 .card-actions button {
-    flex: 1 1 0;
+    /* Garante tamanhos iguais */
+    flex: 1 1 0; 
     padding: 10px;
     color: white;
-    width: 100%;
     margin: 0;
+    width: 100%;
 }
 
-.edit-button {
-    background-color: #6B7280;
+/* Botão EDITAR (Cinza) */
+.edit-button { 
+    background-color: #6B7280; 
+} 
+.edit-button:hover { 
+    background-color: #4B5563; 
 }
 
-.edit-button:hover {
-    background-color: #4B5563;
-}
-
-.delete-button {
-    background-color: #E53E3E;
-    margin-top: 0;
-}
-
-.delete-button:hover {
-    background-color: #C53030;
+/* Botão EXCLUIR (Vermelho) */
+.delete-button { 
+    background-color: #E53E3E; 
+} 
+.delete-button:hover { 
+    background-color: #C53030; 
 }

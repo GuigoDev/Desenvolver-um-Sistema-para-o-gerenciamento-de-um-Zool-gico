@@ -7,27 +7,14 @@
     border-radius: 12px;
     margin-bottom: 30px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    background-color: var(--color-text-dark) !important;
 }
 
-.filter-card h2 {
-    text-align: center;
-    padding-bottom: 15px;
-    margin: 0 0 30px 0;
-    position: relative;
-    color: white !important;
-    font-weight: 400;
-    font-size: 1.8em;
-    text-transform: none;
-    border-bottom: none;
-}
-
-.filter-card h2::after {
-    content: '';
-    display: block;
-    width: 60%;
-    height: 1px;
-    background-color: white;
-    margin: 10px auto 0 auto;
+.filter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px 30px;
+    align-items: start;
 }
 
 .animal-detail-card {
@@ -51,14 +38,10 @@
 
 .animal-name {
     font-size: 2em;
-    color: white !important;
+    color: var(--color-primary) !important;
     margin: 0;
     text-align: left;
     border: none;
-}
-
-.animal-name::after {
-    display: none;
 }
 
 .status-container {
@@ -117,15 +100,35 @@
     width: 100%;
 }
 
+.mini-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.mini-select {
+    background-color: #e0f2e9 !important;
+    color: #333 !important;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 0.9em;
+    width: 100%;
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 40px;
+}
+
 .consulta-input-box {
-    background-color: var(--color-input-bg) !important;
+    background-color: #e0f2e9 !important;
     color: #000 !important;
     border-radius: 12px;
-    padding: 20px;
-    height: 200px;
+    padding: 15px;
+    height: 140px;
     border: none;
     resize: none;
-    font-size: 1.1em;
+    font-size: 1em;
     width: 100%;
     box-sizing: border-box;
     font-family: inherit;
@@ -163,34 +166,48 @@
     transition: transform 0.2s;
 }
 
-.add-btn:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
+.historico-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 250px;
+    overflow-y: auto;
 }
 
-.historico-list { 
-    list-style: none; padding: 0; margin: 0; 
-    max-height: 250px; overflow-y: auto; /* Scroll se tiver muitos */
-}
-
-.historico-item { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: flex-start; /* Alinha no topo */
-    font-size: 0.9em; 
-    margin-bottom: 12px; 
+.historico-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 0.9em;
+    margin-bottom: 12px;
     color: white;
-    background-color: rgba(255,255,255,0.05); /* Fundo sutil */
+    background-color: rgba(255, 255, 255, 0.05);
     padding: 8px;
     border-radius: 6px;
 }
 
-.h-desc { font-weight: bold; color: white; display: block; margin-bottom: 4px; }
+.h-desc {
+    font-weight: bold;
+    color: white;
+    display: block;
+    margin-bottom: 4px;
+}
 
 .button-wrapper-right {
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
+}
+
+.finalize-btn {
+    background-color: #D4AF37;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .item-actions {
@@ -206,26 +223,5 @@
     padding: 2px 5px;
     border-radius: 4px;
     transition: background-color 0.2s;
-    flex-grow: 0; /* Não esticar */
-    width: auto;
     box-shadow: none;
-}
-
-.icon-btn.edit:hover { background-color: rgba(255, 255, 255, 0.2); }
-.icon-btn.delete:hover { background-color: rgba(229, 62, 62, 0.5); }
-
-.finalize-btn {
-    background-color: #D4AF37;
-    color: white;
-    padding: 10px 30px;
-    border-radius: 20px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.finalize-btn:hover {
-    background-color: #B5952F;
-    transform: translateY(-1px);
 }

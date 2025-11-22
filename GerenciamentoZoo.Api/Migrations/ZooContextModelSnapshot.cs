@@ -76,6 +76,9 @@ namespace GerenciamentoZoo.Api.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("longtext");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AnimalId");
