@@ -3,50 +3,34 @@ import axios from 'axios';
 import AnimalForm from './components/AnimalForm';
 import AnimalList from './components/AnimalList';
 import ProntuarioView from './components/ProntuarioView'; 
-import CuidadorForm from './components/CuidadorForm'; // 🚨 Import Novo
-import CuidadorList from './components/CuidadorList'; // 🚨 Import Novo
 
 function App() {
   const [currentView, setCurrentView] = useState('cadastro');
   const [animalParaEditar, setAnimalParaEditar] = useState(null);
   const [animalParaConsulta, setAnimalParaConsulta] = useState(null); 
-  
-  // 🚨 NOVO: Estado para edição de cuidador
-  const [cuidadorParaEditar, setCuidadorParaEditar] = useState(null);
-
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   const handleNavigation = (view) => {
     setCurrentView(view);
-    if (view === 'cadastro') setAnimalParaEditar(null);
-    if (view === 'cuidadores-cadastro') setCuidadorParaEditar(null); // Limpa ao ir para novo cadastro
+    if (view === 'cadastro') setAnimalParaEditar(null); 
+    // Se sair da tela de prontuário, limpa a seleção
     if (view !== 'prontuario') setAnimalParaConsulta(null);
   };
 
-  // Ações de Animais
   const handleEditAnimal = (animal) => {
     setAnimalParaEditar(animal);
     setCurrentView('cadastro');
   };
+
   const handleOpenProntuario = (animal) => {
     setAnimalParaConsulta(animal);
     setCurrentView('prontuario');
   };
+
   const handleAnimalSaved = () => {
     setCurrentView('lista');
     setAnimalParaEditar(null);
   };
-
-  // 🚨 NOVAS: Ações de Cuidadores
-  const handleEditCuidador = (cuidador) => {
-    setCuidadorParaEditar(cuidador);
-    setCurrentView('cuidadores-cadastro');
-  };
-  const handleCuidadorSaved = () => {
-    setCurrentView('cuidadores-lista');
-    setCuidadorParaEditar(null);
-  };
-
   
   useEffect(() => {
     document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
@@ -61,13 +45,9 @@ function App() {
         </div>
         
         <div className="header-nav-buttons">
-            <button onClick={() => handleNavigation('cadastro')}>Animais</button>
-            <button onClick={() => handleNavigation('lista')}>Listar</button>
-            <button onClick={() => handleNavigation('prontuario')}>Prontuários</button>
-            
-            {/* 🚨 NOVO BOTÃO DE MENU */}
-            <button onClick={() => handleNavigation('cuidadores-lista')}>Cuidadores</button>
-
+            <button className={currentView === 'cadastro' ? 'active' : ''} onClick={() => handleNavigation('cadastro')}>Novo Cadastro</button>
+            <button className={currentView === 'lista' ? 'active' : ''} onClick={() => handleNavigation('lista')}>Listar animais</button>
+            <button className={currentView === 'prontuario' ? 'active' : ''} onClick={() => handleNavigation('prontuario')}>Prontuários</button>
             <button className="theme-toggle" onClick={() => setIsDarkMode(prev => !prev)}>
                 {isDarkMode ? '🌞' : '🌙'}
             </button>
@@ -76,17 +56,19 @@ function App() {
       
       <div className="app-container">
         <main>
-          {/* VIEW: Animais */}
+          {/* TELA DE CADASTRO / EDIÇÃO */}
           {currentView === 'cadastro' && (
             <section className="section-cadastro">
               <AnimalForm onAnimalSaved={handleAnimalSaved} animalEditando={animalParaEditar} /> 
             </section>
           )}
+
+          {/* TELA DE LISTAGEM */}
           {currentView === 'lista' && (
             <AnimalList onEdit={handleEditAnimal} onOpenProntuario={handleOpenProntuario} /> 
           )}
 
-          {/* VIEW: Prontuários */}
+          {/* TELA DE PRONTUÁRIOS (ESPECÍFICA DO ANIMAL) */}
           {currentView === 'prontuario' && (
             animalParaConsulta ? (
               <ProntuarioView 
@@ -94,28 +76,16 @@ function App() {
                   onBack={() => handleNavigation('lista')} 
               />
             ) : (
+              // Tela de Aviso se clicar no menu sem selecionar animal
               <div className="form-container" style={{ textAlign: 'center', maxWidth: '600px' }}>
                   <h2 style={{ color: 'white', borderBottom: 'none' }}>Acesso aos Prontuários</h2>
                   <p style={{ color: 'white', marginBottom: '20px' }}>
-                      Selecione um animal na lista para ver o histórico.
+                      Para acessar o prontuário e histórico clínico, selecione um animal na lista.
                   </p>
-                  <button onClick={() => handleNavigation('lista')}>Ir para Lista</button>
+                  <button onClick={() => handleNavigation('lista')}>Ir para Lista de Animais</button>
               </div>
             )
           )}
-
-          {/* 🚨 NOVAS VIEWS: Cuidadores */}
-          {currentView === 'cuidadores-lista' && (
-               <CuidadorList 
-                  onEdit={handleEditCuidador} 
-                  onNew={() => handleNavigation('cuidadores-cadastro')} 
-               />
-          )}
-
-          {currentView === 'cuidadores-cadastro' && (
-             <CuidadorForm onSaved={handleCuidadorSaved} cuidadorEditando={cuidadorParaEditar} />
-          )}
-
         </main>
       </div>
     </>

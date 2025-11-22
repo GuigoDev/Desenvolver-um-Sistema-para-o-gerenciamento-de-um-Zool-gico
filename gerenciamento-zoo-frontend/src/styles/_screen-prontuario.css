@@ -168,34 +168,51 @@
     filter: brightness(1.1);
 }
 
-.historico-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: 200px;
-    overflow-y: auto;
+.historico-list { 
+    list-style: none; padding: 0; margin: 0; 
+    max-height: 250px; overflow-y: auto; /* Scroll se tiver muitos */
 }
 
-.historico-item {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85em;
-    margin-bottom: 10px;
-    color: #ccc;
-    border-bottom: 1px solid #333;
-    padding-bottom: 5px;
-}
-
-.h-desc {
-    font-weight: bold;
+.historico-item { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; /* Alinha no topo */
+    font-size: 0.9em; 
+    margin-bottom: 12px; 
     color: white;
+    background-color: rgba(255,255,255,0.05); /* Fundo sutil */
+    padding: 8px;
+    border-radius: 6px;
 }
+
+.h-desc { font-weight: bold; color: white; display: block; margin-bottom: 4px; }
 
 .button-wrapper-right {
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
 }
+
+.item-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 2px 5px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    flex-grow: 0; /* Não esticar */
+    width: auto;
+    box-shadow: none;
+}
+
+.icon-btn.edit:hover { background-color: rgba(255, 255, 255, 0.2); }
+.icon-btn.delete:hover { background-color: rgba(229, 62, 62, 0.5); }
 
 .finalize-btn {
     background-color: #D4AF37;
