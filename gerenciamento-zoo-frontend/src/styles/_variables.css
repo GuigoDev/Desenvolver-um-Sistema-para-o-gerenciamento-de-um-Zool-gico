@@ -1,0 +1,27 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Paleta Final */
+  --color-primary: #34D399; /* Verde Vibrante (Botões) */
+  --color-secondary: #4ca785; /* Verde Médio (Fundo do Card) */
+  --color-input-bg: #e0f2e9; /* Verde Pálido (Fundo dos Inputs) */
+  
+  --color-background: #DCFCE7; 
+  --color-surface: #F0FDF4; 
+  
+  --color-text-dark: #276749;
+  --color-text-light: #FFFFFF;
+  --color-error: #E53935;
+  
+  --dark-color-background: #121212; 
+  --dark-color-surface: #282828; 
+  --dark-color-text: #DCFCE7;
+}
+
+h1, h2, h3 { color: var(--color-primary); }

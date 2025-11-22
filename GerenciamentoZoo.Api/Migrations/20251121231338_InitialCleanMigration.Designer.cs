@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GerenciamentoZoo.Api.Migrations
 {
     [DbContext(typeof(ZooContext))]
-    [Migration("20251120000400_AddCuidadoEntity")]
-    partial class AddCuidadoEntity
+    [Migration("20251121231338_InitialCleanMigration")]
+    partial class InitialCleanMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
